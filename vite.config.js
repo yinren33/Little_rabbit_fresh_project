@@ -31,8 +31,10 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
+        // 这里设置额外的css样式文件或者scss文件
         additionalData: `
         @use "@/styles/element/index.scss" as *;
+        @use "@/styles/var.scss" as *;
         `,
       }
     }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        我是home页
+        我是二级路由里的home页
     </div>
 </template>
 
@@ -9,5 +9,8 @@
 </script>
 
 <style lang="scss" scoped>
-
+    div {
+        background-color: skyblue;
+        height: 100px;
+    }
 </style>
