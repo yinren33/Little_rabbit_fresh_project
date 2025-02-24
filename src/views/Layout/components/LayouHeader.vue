@@ -1,20 +1,9 @@
 <script setup>
 import { getCategoryAPI } from '@/apis/layout'
 import { onMounted ,ref } from 'vue'
-
-const categoryList = ref([])
-
-// 封装函数
-const getCategory = async function() {
-    const res = await getCategoryAPI()
-    console.log(res)
-    categoryList.value = res.result
-}
-
-// 调用函数
-onMounted(function() {
-    getCategory();
-})
+// 从pinia中导入函数
+import { useCounterStore } from '@/stores/category.js'  
+const categoryStore = useCounterStore();
 
 </script>
 
@@ -25,7 +14,7 @@ onMounted(function() {
         <RouterLink to="/">小兔鲜</RouterLink>
       </h1>
         <ul class="daohang">
-            <li v-for="item in categoryList" :key="item.id">
+            <li v-for="item in categoryStore.categoryList" :key="item.id">
                 <!-- li里面放了a标签 a标签等同于 RouterLink -->
                 <RouterLink to="/login">{{ item.name }}</RouterLink>
             </li>

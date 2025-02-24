@@ -16,6 +16,7 @@ const router = createRouter({
   // 在下面的数组中，主要配置path和component的对应关系 也就是路径和组件
   routes: [
     {
+      // 这里理解为进入首页时 先加载Layout组件中的数据页面，然后加载Home组件中的页面
       // 进入网站时，默认路径是/
       path: "/",
       component: Layout,

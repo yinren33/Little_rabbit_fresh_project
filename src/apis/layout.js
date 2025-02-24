@@ -5,6 +5,6 @@ import httpInstance from "@/utils/http";
 export function getCategoryAPI() {
     return httpInstance({
         // 默认是get请求，可以省略
-        url: '/home/category/head'
+        url: '/home/category/head'  
     })
 }
