@@ -1,4 +1,20 @@
 <script setup>
+import { getCategoryAPI } from '@/apis/layout'
+import { onMounted ,ref } from 'vue'
+
+const categoryList = ref([])
+
+// 封装函数
+const getCategory = async function() {
+    const res = await getCategoryAPI()
+    console.log(res)
+    categoryList.value = res.result
+}
+
+// 调用函数
+onMounted(function() {
+    getCategory();
+})
 
 </script>
 
@@ -8,7 +24,12 @@
       <h1 class="logo">
         <RouterLink to="/">小兔鲜</RouterLink>
       </h1>
-
+        <ul class="daohang">
+            <li v-for="item in categoryList" :key="item.id">
+                <!-- li里面放了a标签 a标签等同于 RouterLink -->
+                <RouterLink to="/login">{{ item.name }}</RouterLink>
+            </li>
+        </ul>
       <div class="search">
         <i class="iconfont icon-search"></i>
         <input type="text" placeholder="搜一搜">
@@ -38,6 +59,17 @@
       width: 100%;
       text-indent: -9999px;
       background: url('@/assets/images/logo.png') no-repeat center 18px / contain;
+    }
+  }
+
+    // 导航部分
+  .daohang {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+
+    li {
+        margin: 0 15px;
     }
   }
 
