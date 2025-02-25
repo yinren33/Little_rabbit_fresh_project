@@ -1,20 +1,40 @@
 <script setup>
+import HomePanel from '../components/HomePanel.vue'
+import { getGoodsAPI } from '@/apis/home.js'
+import { ref, onMounted } from 'vue'
+// import goodsItem from '../components/GoodsItem.vue'
+import GoodsItem from '../components/GoodsItem.vue'
+
+const goodsProduct = ref([])
+
+// 封装函数
+const getGoods = async ()=> {
+  const res = await getGoodsAPI()
+  goodsProduct.value = res.result
+}
+
+// 调用函数
+onMounted(()=> {
+  getGoods()
+})
 </script>
 
 <template>
   <div class="home-product">
-    <HomePanel >
+    <HomePanel :title="cate.name" v-for="cate in goodsProduct" :key="cate.id">
+      <!-- 插槽 -->
       <div class="box">
         <RouterLink class="cover" to="/">
-          <img  >
+          <img v-img-lazy="cate.picture" />
           <strong class="label">
-            <span>馆</span>
-            <span></span>
+            <span>{{ cate.name }}馆</span>
+            <span>{{ cate.saleInfo }}</span>
           </strong>
         </RouterLink>
         <ul class="goods-list">
-          <li>
-            <GoodsItem />
+          <li v-for="goods in cate.goods" :key="goods.id">
+            <!-- 传递变量给GoodsItem组件 不知道为什么要加冒号 -->
+            <GoodsItem :goods="goods" />  
           </li>
         </ul>
       </div>

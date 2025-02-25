@@ -1,15 +1,32 @@
 <script setup>
+import HomePanel from "./HomePanel.vue";
+import { findNewAPI } from "@/apis/home.js";
+import { ref, onMounted } from "vue";
 
+// 声明数组接收数据，方便后续的页面渲染
+const newList = ref([]);
+
+// 封装函数
+const findNew = async () => {
+  const res = await findNewAPI();
+  console.log("我被打印了", res);
+  newList.value = res.result;
+};
+
+// 调用函数
+onMounted(() => {
+  findNew();
+});
 </script>
 
 <template>
-  <HomePanel title="新鲜好物" sub-title="新鲜出炉 品质靠谱">
+  <HomePanel title="新鲜好物" subTitle="新鲜出炉 品质靠谱">
     <ul class="goods-list">
-      <li>
-        <RouterLink >
-          <img  alt="" />
-          <p class="name"></p>
-          <p class="price">&yen;</p>
+      <li v-for="item in newList" :key="item.id">
+        <RouterLink to="/">
+          <img :src="item.picture" alt="" />
+          <p class="name">{{ item.name }}</p>
+          <p class="price">&yen;{{ item.price }}</p>
         </RouterLink>
       </li>
     </ul>
@@ -29,6 +46,7 @@
 
 
 <style scoped lang='scss'>
+// 下面的样式是控制图片的样式
 .goods-list {
   display: flex;
   justify-content: space-between;
@@ -39,7 +57,7 @@
     height: 406px;
 
     background: #f0f9f4;
-    transition: all .5s;
+    transition: all 0.5s;
 
     &:hover {
       transform: translate3d(0, -3px, 0);

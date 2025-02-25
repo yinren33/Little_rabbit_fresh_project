@@ -5,7 +5,6 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
-
 // 引入初始化样式文件
 import '@/styles/common.scss'
 
@@ -20,7 +19,13 @@ import '@/styles/common.scss'
 
 const app = createApp(App)
 
+// 引入懒加载指令插件并且注册
+// lazyPlugin是一个对象
+import { lazyPlugin } from '@/directives/index'
+
+
 app.use(createPinia())
 app.use(router)
+app.use(lazyPlugin)
 
 app.mount('#app')

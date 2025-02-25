@@ -28,7 +28,7 @@ const router = createRouter({
         },
         {
           // 路径中的path名是在浏览器的url地址栏要访问的地址，和vue组件名字不一样
-          path: "category",
+          path: "category/:id",
           component: Category
         }
       ],

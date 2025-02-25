@@ -1,16 +1,30 @@
 <script setup>
+import HomePanel from './HomePanel.vue'
+import { ref, onMounted } from 'vue'
+import { getHotAPI } from '../../../apis/home'
 
+const hotList = ref([])
 
+// 封装函数
+const getHot = async () => {
+  const res = await getHotAPI()
+  hotList.value = res.result
+}
+
+// 调用函数
+onMounted(() => {
+  getHot()
+})
 </script>
 
 <template>
   <HomePanel title="人气推荐" sub-title="人气爆款 不容错过">
     <ul class="goods-list">
-      <li>
+      <li v-for="item in hotList" :key="item.id">
         <RouterLink to="/">
-          <img  alt="">
-          <p class="name"></p>
-          <p class="desc"></p>
+          <img v-img-lazy="item.picture" alt="">
+          <p class="name">{{item.title}}</p>
+          <p class="desc">{{item.alt}}</p>
         </RouterLink>
       </li>
     </ul>

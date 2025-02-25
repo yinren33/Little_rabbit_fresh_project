@@ -24,7 +24,7 @@ const { y } = useScroll(window);
       <div class="right">
         <ul>
           <li v-for="item in categoryStore.categoryList" :key="item.id">
-            <RouterLink>{{ item.name }}</RouterLink>
+            <RouterLink :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
           </li>
         </ul>
         <RouterLink to="/">品牌</RouterLink>

@@ -4,6 +4,7 @@
         <LayoutFixed/>
         <LayoutNav/>
         <LayoutHeader/>
+        <!-- 这里放置了二级路由出口 -->
         <RouterView/>
         <LayoutFooter/>
     </div>
