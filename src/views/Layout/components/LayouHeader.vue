@@ -19,7 +19,7 @@ const categoryStore = useCounterStore();
           </li>
             <li v-for="item in categoryStore.categoryList" :key="item.id">
                 <!-- li里面放了a标签 a标签等同于 RouterLink -->
-                <RouterLink :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
+                <RouterLink active-class="active" :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
             </li>
         </ul>
       <div class="search">
@@ -113,6 +113,11 @@ const categoryStore = useCounterStore();
         font-family: Arial;
       }
     }
+  }
+
+  .active {
+    color: $xtxColor;
+    border-bottom: 1px solid $xtxColor;
   }
 }
 </style>

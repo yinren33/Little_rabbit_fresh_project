@@ -5,7 +5,8 @@
         <LayoutNav/>
         <LayoutHeader/>
         <!-- 这里放置了二级路由出口 -->
-        <RouterView/>
+        <!-- 添加key之后，可以强行销毁重建 -->
+        <RouterView :key="$route.fullPath"/>
         <LayoutFooter/>
     </div>
 </template>

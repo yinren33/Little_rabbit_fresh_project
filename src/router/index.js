@@ -10,6 +10,8 @@ import Layout from "@/views/Layout/index.vue";
 // 导入二级组件
 import Home from "@/views/Home/index.vue";
 import Category from "@/views/Category/index.vue";
+import SubCategory from "@/views/SubCategory/index.vue"
+import Detail from "@/views/Detail/index.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +32,14 @@ const router = createRouter({
           // 路径中的path名是在浏览器的url地址栏要访问的地址，和vue组件名字不一样
           path: "category/:id",
           component: Category
+        },
+        {
+          path: 'category/sub/:id',
+          component: SubCategory
+        },
+        {
+          path: 'detail/:id',
+          component: Detail
         }
       ],
     },
@@ -38,6 +48,14 @@ const router = createRouter({
       component: Login,
     },
   ],
+
+  // 路由滚动行为定制
+  // 切换页面时自动滑动到顶部
+  scrollBehavior() {
+    return {
+      top: 0,
+    }
+  }
 });
 
 export default router;

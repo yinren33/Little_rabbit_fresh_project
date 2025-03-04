@@ -7,6 +7,7 @@ import App from './App.vue'
 import router from './router'
 // 引入初始化样式文件
 import '@/styles/common.scss'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 // 在main.js中导入js文件，导入即执行
 // import '@/apis/ceshi.js'
@@ -23,9 +24,16 @@ const app = createApp(App)
 // lazyPlugin是一个对象
 import { lazyPlugin } from '@/directives/index'
 
+// 引入全局组件插件
+import { componentPlugin } from '@/components'
 
-app.use(createPinia())
+// 注册持久化插件
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+app.use(pinia)
+app.use()
 app.use(router)
 app.use(lazyPlugin)
+app.use(componentPlugin)
 
 app.mount('#app')

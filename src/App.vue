@@ -7,7 +7,9 @@
  <!-- <el-button type="primary">Primary</el-button>
  <el-button type="danger" :icon="Delete" circle /> -->
  <!-- 设置一级路由出口 -->
+ <!-- app组件中放一个路由出口 -->
  <RouterView/>
+ <div></div>
 </template>
 
 <style scoped lang="scss">

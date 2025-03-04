@@ -1,5 +1,7 @@
 // 配置请求URL的基地址
 import axios from 'axios'
+import { ElMessage } from 'element-plus'
+import 'element-plus/theme-chalk/el-message.css'
 
 const httpInstance = axios.create({
     baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
@@ -15,6 +17,11 @@ httpInstance.interceptors.request.use(function(config){
 httpInstance.interceptors.response.use(function(res) {
     return res.data
 }, e => {
+    // 统一错误提示
+    ElMessage({
+        type: 'warning',
+        message: e.response.data.message
+    })
     return Promise.reject(e)
 })
 

@@ -5,16 +5,16 @@ import { onMounted, ref } from 'vue'
 const bannerList = ref([])
 
 // 封装函数
-const getBanner = async function() {
-    const res = await getBannerAPI()
-    console.log(res)
-    bannerList.value = res.result
-}
-
+const getBanner = async function () {
+  const res = await getBannerAPI({
+    distributionSite: "2",
+  });
+  bannerList.value = res.result;
+};
 // 调用函数
-// onMounted(() => {
-//     getBanner()
-// })
+onMounted(() => {
+    getBanner()
+})
 
 </script>
 
